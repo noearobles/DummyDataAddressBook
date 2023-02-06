@@ -1,23 +1,19 @@
-let arrayOfUsers;
+const apiUrl = "https://randomuser.me/api/?results=50";
 
-// This function waits for the web page to be loaded, when it does it will run the code inside of it which happens to be getPosts()
+let arrayOfUsers = [];
+
 window.onload = function () {
-  getUsers();
+ getUsers();
+  displayUsers();
 };
 
 // This function is going to make a fetch request to the URL inside its parameter brackets (). Then it will turn the response (data it's getting back), saved here as res. The res.json will not be saved as posts and saved into the variable, arrayOfUsers
 const getUsers = () => {
-  fetch("https://randomuser.me/api/?results=1000")
+  fetch(apiUrl)
     .then((res) => res.json())
-    .then((users) => (arrayOfUsers = users));
+    .then((users) => (arrayOfUsers = users.results));
+ 
 };
-
-const post = {
-  title: "New Post for practice",
-  body: "Fetch is gonna be big",
-  userID: 1994,
-};
-
 
 // This function logs the results in your browser's console
 const consoleUsers = () => {
@@ -26,5 +22,32 @@ const consoleUsers = () => {
 
 // this function creates elements inside the all-posts ul, then appends text inside it with the posts that were returned in the request.
 const displayUsers = () => {
+  const allUsers = document.getElementById("all-Users");
+  arrayOfUsers.map((user, index) => {
+    const li = document.createElement("li");
+    const photo = document.createElement("img");
+    photo.src = user.picture.medium;
+    const text = document.createTextNode(
+      `#${index}, Username: ${user.name.first} ${user.name.last}: Email: ${user.email}`
+    );
 
+    li.appendChild(text);
+    allUsers.append(li);
+    allUsers.append(photo);
+  });
+};
+const displayDOB = () => {
+  const allUsers = document.getElementById("dob");
+  arrayOfUsers.map((user, index) => {
+    const li = document.createElement("p");
+    const text = document.createTextNode(
+      `#${index}, Birthdate: ${user.dob.date} Address: ${user.location.street.number} ${user.location.street.name} ${user.location.city} ${user.location.country} ${user.location.postcode}`
+    );
+
+    li.appendChild(text);
+    allUsers.append(li);
+  });
+};
+const reload = () => {
+  window.location.reload;
 };

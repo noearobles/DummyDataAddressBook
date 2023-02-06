@@ -1,0 +1,18 @@
+div{
+    display: grid;
+  grid-template-columns: repeat(2);
+
+    
+}
+#all-Users{
+    float: left;
+    width: 50%;
+}
+#dob{
+    float: right;
+    width: 50%;
+}
+#dob ul{
+    margin-top: 10%;
+    margin-bottom: 10%;
+}

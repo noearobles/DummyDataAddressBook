@@ -4,7 +4,6 @@ let arrayOfUsers = [];
 
 window.onload = function () {
  getUsers();
-  displayUsers();
 };
 
 // This function is going to make a fetch request to the URL inside its parameter brackets (). Then it will turn the response (data it's getting back), saved here as res. The res.json will not be saved as posts and saved into the variable, arrayOfUsers
@@ -39,7 +38,7 @@ const displayUsers = () => {
 const displayDOB = () => {
   const allUsers = document.getElementById("dob");
   arrayOfUsers.map((user, index) => {
-    const li = document.createElement("p");
+    const li = document.createElement("ul");
     const text = document.createTextNode(
       `#${index}, Birthdate: ${user.dob.date} Address: ${user.location.street.number} ${user.location.street.name} ${user.location.city} ${user.location.country} ${user.location.postcode}`
     );
